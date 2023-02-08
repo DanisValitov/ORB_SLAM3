@@ -2,6 +2,7 @@
 # 1. Installation of ORB-SLAM 3 on orange pi 4 focal
 ### Install all dependencies.
 ```shell
+apt upgrade
 
 sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main"
 sudo apt update
