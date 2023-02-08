@@ -131,6 +131,12 @@ if(realsense2_FOUND)
     )
 endif()
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Pulso/Monocular)
+
+add_executable(pulso_device_mono
+        Pulso/Monocular/pulso_device_mono.cc)
+target_link_libraries(pulso_device_mono ${PROJECT_NAME})
+
 
 # Build examples
 
