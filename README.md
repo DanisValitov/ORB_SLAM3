@@ -63,6 +63,10 @@ git clone https://github.com/DanisValitov/ORB_SLAM3.git
 cd ORB_SLAM3
 chmod +x build.sh
 ./build.sh
+
+sudo ldconfig
+
+
 ```
 ---
 
