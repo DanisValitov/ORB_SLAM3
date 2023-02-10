@@ -49,8 +49,10 @@ cd Pangolin
 ./scripts/install_prerequisites.sh recommended
 
 # Configure and build
-cmake -B build
-cmake --build build
+mkdir build
+cd build
+cmake ..
+make -j3
 sudo make install
 ```
 ---
