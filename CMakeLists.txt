@@ -137,6 +137,14 @@ add_executable(pulso_device_mono
         Pulso/Monocular/pulso_device_mono.cc)
 target_link_libraries(pulso_device_mono ${PROJECT_NAME})
 
+add_executable(pulso_device_mono_udp_server
+        Pulso/Monocular/pulso_device_mono_udp_server.cc)
+target_link_libraries(pulso_device_mono_udp_server ${PROJECT_NAME})
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Pulso/Stereo)
+add_executable(pulso_device_stereo
+        Pulso/Stereo/pulso_device_stereo.cc)
+target_link_libraries(pulso_device_stereo ${PROJECT_NAME})
 
 # Build examples
 

@@ -19,10 +19,10 @@ Camera1.p1: 0.0
 Camera1.p2: 0.0
 
 # Camera frames per second 
-Camera.fps: 20
+Camera.fps: 60
 
 # Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
-Camera.RGB: 1
+Camera.RGB: 0
 
 # Camera resolution
 Camera.width: 640
