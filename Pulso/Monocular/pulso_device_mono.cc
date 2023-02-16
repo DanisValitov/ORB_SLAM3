@@ -60,51 +60,20 @@ int main(int argc, char **argv)
     cv::Mat myImage;
     cv::VideoCapture cap(2);
 
-    // UDP STUFF
-    /////////////////
 
-    // #define DST_PORT 7071
-    // #define SRC_PORT 59612
-
-    // #define IP "192.168.1.117"
-
-    struct sockaddr_in addr, srcaddr;
-    int fd;
-
-    if ((fd = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
-    {
-        perror("socket");
-        exit(1);
-    }
-
-    memset(&addr, 0, sizeof(addr));
-    addr.sin_family = AF_INET;
-    addr.sin_addr.s_addr = inet_addr("192.168.1.117");
-    addr.sin_port = htons(7071);
-
-    memset(&srcaddr, 0, sizeof(srcaddr));
-    srcaddr.sin_family = AF_INET;
-    srcaddr.sin_addr.s_addr = htonl(INADDR_ANY);
-    srcaddr.sin_port = htons(59612);
-
-    if (bind(fd, (struct sockaddr *)&srcaddr, sizeof(srcaddr)) < 0)
-    {
-        perror("bind");
-        exit(1);
-    }
     ///////////////////////
     float arr[7] = {};
     unsigned char tempBuffer[28] = {};
     ///////////////////////
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    ORB_SLAM3::System SLAM(argv[1], argv[2], ORB_SLAM3::System::MONOCULAR, true);
+    ORB_SLAM3::System SLAM(argv[1], argv[2], ORB_SLAM3::System::MONOCULAR, false);
     float imageScale = SLAM.GetImageScale();
 
     double t_resize = 0.f;
     double t_track = 0.f;
-
-    while (true)
+    int counter = 0;
+    while (counter < 60 * 10)
     {
 
         cap >> myImage;
@@ -149,30 +118,12 @@ int main(int argc, char **argv)
         arr[6] = zt;
 
         printf("---------------------------------------\n");
-        cout << x << ", " << y << ", " << z << ", " << w << " | " << xt << ", " << yt << ", " << zt << endl;
+        cout << counter << " " << x << ", " << y << ", " << z << ", " << w << " | " << xt << ", " << yt << ", " << zt << endl;
 
-        int shift = 0;
-        int step = 4;
-        for (size_t i = 0; i < 7; i++)
-        {
-            const unsigned char *res = toChar(arr[i]);
-            for (size_t j = 0; j < step; j++)
-            {
-                tempBuffer[(step - j - 1) + shift] = res[j];
-            }
-            shift = shift + step;
-        }
-
-        if (sendto(fd, tempBuffer, 28, 0, (struct sockaddr *)&addr,
-                   sizeof(addr)) < 0)
-        {
-            perror("sendto");
-            exit(1);
-        }
+        counter = counter + 1;
     }
     // Stop all threads
     SLAM.Shutdown();
-    close(fd);
     return 0;
 }
 

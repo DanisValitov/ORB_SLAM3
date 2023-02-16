@@ -1,6 +1,18 @@
 %YAML:1.0
 
 #--------------------------------------------------------------------------------------------
+# System config
+#--------------------------------------------------------------------------------------------
+
+# When the variables are commented, the system doesn't load a previous session or not store the current one
+
+# If the LoadFile doesn't exist, the system give a message and create a new Atlas from scratch
+# System.LoadAtlasFromFile: "Session_KITTI04-12-Pulso"
+
+# The store file is created from the current session, if a file with the same name exists it is deleted
+System.SaveAtlasToFile: "Session_KITTI04-12-Pulso"
+
+#--------------------------------------------------------------------------------------------
 # Camera Parameters. Adjust them!
 #--------------------------------------------------------------------------------------------
 File.version: "1.0"

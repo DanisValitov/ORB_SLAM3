@@ -40,11 +40,11 @@ Camera2.k2: 0.07451284
 Camera2.p1: -0.00010473
 Camera2.p2: -3.55590700e-05
 
-Camera.width: 752
+Camera.width: 640
 Camera.height: 480
 
 # Camera frames per second 
-Camera.fps: 20
+Camera.fps: 30
 
 # Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
 Camera.RGB: 1

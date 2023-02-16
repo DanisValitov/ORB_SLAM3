@@ -41,12 +41,12 @@ Stereo.T_c1_c2: !!opencv-matrix
             0.0,0.0,0.0,1.0]
 
 # Camera resolution
-Camera.width: 512
-Camera.height: 512
+Camera.width: 640
+Camera.height: 480
 
 # Lapping area between images
-Camera.overlappingBegin: 0
-Camera.overlappingEnd: 511
+Camera1.overlappingBegin: 0
+Camera1.overlappingEnd: 511
 
 Camera2.overlappingBegin: 0
 Camera2.overlappingEnd: 511

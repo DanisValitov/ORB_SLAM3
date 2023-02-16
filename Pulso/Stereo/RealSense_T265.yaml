@@ -49,8 +49,8 @@ Camera2.lappingBegin: 0
 Camera2.lappingEnd: 847
 
 # Camera resolution
-Camera.width: 848
-Camera.height: 800
+Camera.width: 640
+Camera.height: 480
 
 # Camera frames per second 
 Camera.fps: 30.
