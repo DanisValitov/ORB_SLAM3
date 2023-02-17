@@ -24,7 +24,7 @@ Camera.width: 1280
 Camera.height: 800
 
 # Camera frames per second 
-Camera.fps: 60
+Camera.fps: 20
 
 # Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
 Camera.RGB: 1
@@ -34,7 +34,7 @@ Camera.RGB: 1
 #--------------------------------------------------------------------------------------------
 
 # ORB Extractor: Number of features per image
-ORBextractor.nFeatures: 1000 # Tested with 1250
+ORBextractor.nFeatures: 1250 # Tested with 1250
 
 # ORB Extractor: Scale factor between levels in the scale pyramid 	
 ORBextractor.scaleFactor: 1.2

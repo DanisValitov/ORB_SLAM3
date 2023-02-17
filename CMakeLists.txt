@@ -146,6 +146,11 @@ add_executable(pulso_device_stereo
         Pulso/Stereo/pulso_device_stereo.cc)
 target_link_libraries(pulso_device_stereo ${PROJECT_NAME})
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Pulso/Monocular-Inertial)
+add_executable(pulso_device_mono_inertial
+        Pulso/Monocular-Inertial/pulso_device_mono_inertial.cc)
+target_link_libraries(pulso_device_mono_inertial ${PROJECT_NAME})
+
 # Build examples
 
 # RGB-D examples

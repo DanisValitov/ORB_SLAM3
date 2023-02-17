@@ -7,7 +7,7 @@
 # When the variables are commented, the system doesn't load a previous session or not store the current one
 
 # If the LoadFile doesn't exist, the system give a message and create a new Atlas from scratch
-# System.LoadAtlasFromFile: "Session_KITTI04-12-Pulso"
+System.LoadAtlasFromFile: "Session_KITTI04-12-Pulso"
 
 # The store file is created from the current session, if a file with the same name exists it is deleted
 System.SaveAtlasToFile: "Session_KITTI04-12-Pulso"
@@ -31,14 +31,14 @@ Camera1.p1: 0.0
 Camera1.p2: 0.0
 
 # Camera frames per second 
-Camera.fps: 60
+Camera.fps: 20
 
 # Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
-Camera.RGB: 0
+Camera.RGB: 1
 
 # Camera resolution
-Camera.width: 640
-Camera.height: 480
+Camera.width: 1280
+Camera.height: 800
 
 #--------------------------------------------------------------------------------------------
 # ORB Parameters

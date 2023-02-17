@@ -125,6 +125,7 @@ public:
     void ActivateLocalizationMode();
     // This resumes local mapping thread and performs SLAM again.
     void DeactivateLocalizationMode();
+    void SaveAtlas(int type);
 
     // Returns true if there have been a big map change (loop closure, global BA)
     // since last call to this function
@@ -182,6 +183,8 @@ public:
     bool isLost();
     bool isFinished();
 
+    string mStrLoadAtlasFromFile;
+    string mStrSaveAtlasToFile;
     void ChangeDataset();
 
     float GetImageScale();
@@ -194,7 +197,6 @@ public:
 
 private:
 
-    void SaveAtlas(int type);
     bool LoadAtlas(int type);
 
     string CalculateCheckSum(string filename, int type);
@@ -256,8 +258,7 @@ private:
     std::mutex mMutexState;
 
     //
-    string mStrLoadAtlasFromFile;
-    string mStrSaveAtlasToFile;
+
 
     string mStrVocabularyFilePath;
 

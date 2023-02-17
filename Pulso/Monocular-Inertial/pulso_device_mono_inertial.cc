@@ -36,6 +36,9 @@
 
 using namespace std;
 
+#define PORT 4210
+#define MAXLINE 24
+
 // void LoadImages(const string &strImagePath, const string &strPathTimes,
 //                 vector<string> &vstrImages, vector<double> &vTimeStamps);
 
@@ -61,20 +64,83 @@ int main(int argc, char **argv)
     ///////////////////////
     float arr[7] = {};
     unsigned char tempBuffer[28] = {};
-    ///////////////////////
+///////////////////////
+
+    int sockfd;
+    char buffer[MAXLINE];
+    const char *hello = "Hello from server";
+    struct sockaddr_in servaddr, cliaddr;
+
+    // Creating socket file descriptor
+    if ((sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
+    {
+        perror("socket creation failed");
+        exit(EXIT_FAILURE);
+    }
+
+    memset(&servaddr, 0, sizeof(servaddr));
+    memset(&cliaddr, 0, sizeof(cliaddr));
+
+    // Filling server information
+    servaddr.sin_family = AF_INET; // IPv4
+    servaddr.sin_addr.s_addr = INADDR_ANY;
+    servaddr.sin_port = htons(PORT);
+
+    // Bind the socket with the server address
+    if (bind(sockfd, (const struct sockaddr *)&servaddr,
+             sizeof(servaddr)) < 0)
+    {
+        perror("bind failed");
+        exit(EXIT_FAILURE);
+    }
+
+    socklen_t len;
+    int n;
+
+    len = sizeof(cliaddr); // len is value/result
+
+    /////////////////////////
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    ORB_SLAM3::System SLAM(argv[1], argv[2], ORB_SLAM3::System::MONOCULAR, true);
+    ORB_SLAM3::System SLAM(argv[1], argv[2], ORB_SLAM3::System::IMU_MONOCULAR, true);
     float imageScale = SLAM.GetImageScale();
 
     double t_resize = 0.f;
-    cout << "resize= " << t_resize << endl;
     double t_track = 0.f;
     int counter = 0;
     cv::Mat myImage;
+    vector<ORB_SLAM3::IMU::Point> vImuMeas;
     while (true)
     {
+        n = recvfrom(sockfd, (char *)buffer, MAXLINE,
+                     MSG_WAITALL, (struct sockaddr *)&cliaddr,
+                     &len);
+        // buffer[n] = '\0';
+        // printf("Client : %s\n", buffer);
+        float xR;
+        float yR;
+        float zR;
+        float xA;
+        float yA;
+        float zA;
+        char bxr[] = {buffer[0], buffer[1], buffer[2], buffer[3]};
+        char byr[] = {buffer[4], buffer[5], buffer[6], buffer[7]};
+        char bzr[] = {buffer[8], buffer[7], buffer[10], buffer[11]};
 
+        char bxa[] = {buffer[12], buffer[13], buffer[14], buffer[15]};
+        char bya[] = {buffer[16], buffer[17], buffer[18], buffer[19]};
+        char bza[] = {buffer[20], buffer[21], buffer[22], buffer[23]};
+
+        memcpy(&xR, &bxr, 4);
+        memcpy(&yR, &byr, 4);
+        memcpy(&zR, &bzr, 4);
+
+        memcpy(&xA, &bxa, 4);
+        memcpy(&yA, &bya, 4);
+        memcpy(&zA, &bza, 4);
+        std::cout << xR << ", " << yR << ", " << zR << ", " << xA << ", " << yA << ", " << zA << "\n";
+
+        /////
         cap.read(myImage);
         if (myImage.empty())
         { // Breaking the loop if no video frame is detected//
@@ -86,16 +152,13 @@ int main(int argc, char **argv)
         { // If 'Esc' is entered break the loop//
             break;
         }
-        if (imageScale != 1.f)
-        {
-            int width = myImage.cols * imageScale;
-            int height = myImage.rows * imageScale;
-            cv::resize(myImage, myImage, cv::Size(width, height));
-        }
 
         double timestamp = now();
+        vImuMeas.clear();
+        vImuMeas.push_back(ORB_SLAM3::IMU::Point(xA,yA,zA,xR,yR,zR,timestamp));
+                    
 
-        Sophus::SE3f res = SLAM.TrackMonocular(myImage, timestamp); // TODO change to monocular_inertial
+        Sophus::SE3f res = SLAM.TrackMonocular(myImage, timestamp, vImuMeas); // TODO change to monocular_inertial
         g2o::SE3Quat q = ORB_SLAM3::Converter::toSE3Quat(res);
 
         Eigen::Quaterniond quat = q.rotation();
