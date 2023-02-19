@@ -57,7 +57,7 @@ int main(int argc, char **argv)
 {
 
     cv::Mat myImage;
-    cv::VideoCapture cap(2);
+    cv::VideoCapture cap(0);
 
     // UDP STUFF
     /////////////////
@@ -167,7 +167,7 @@ int main(int argc, char **argv)
         int step = 4;
         for (size_t i = 0; i < 7; i++)
         {
-            const unsigned char *res = toChar(arr[i]);
+            unsigned char *res = (unsigned char*)&arr[i];
             for (size_t j = 0; j < step; j++)
             {
                 tempBuffer[(step - j - 1) + shift] = res[j];
