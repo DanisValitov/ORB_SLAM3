@@ -1,51 +1,57 @@
 %YAML:1.0
+# System.LoadAtlasFromFile: "Session_tum_Mono"
 
-#--------------------------------------------------------------------------------------------
-# System config
-#--------------------------------------------------------------------------------------------
+System.SaveAtlasToFile: "Session_tum_Mono"
 
-# When the variables are commented, the system doesn't load a previous session or not store the current one
-
-# If the LoadFile doesn't exist, the system give a message and create a new Atlas from scratch
-System.LoadAtlasFromFile: "Session_KITTI04-12-Pulso"
-
-# The store file is created from the current session, if a file with the same name exists it is deleted
-System.SaveAtlasToFile: "Session_KITTI04-12-Pulso"
 
 #--------------------------------------------------------------------------------------------
 # Camera Parameters. Adjust them!
 #--------------------------------------------------------------------------------------------
 File.version: "1.0"
 
-Camera.type: "PinHole"
+Camera.type: "KannalaBrandt8"
+    #    distortion: [ -0.02301641  -1.46200988   9.65130386 -15.79541297] +- [ 0.18158491  1.65877165  6.60150579  9.55472786]
+    # projection: [ 429.16539289  421.90755173  282.13960602  260.23149283] +- [ 26.39775182  25.24757224   3.65230035   2.86999381]
+
+
 
 # Camera calibration and distortion parameters (OpenCV) 
-Camera1.fx: 707.0912
-Camera1.fy: 707.0912
-Camera1.cx: 601.8873
-Camera1.cy: 183.1104
+Camera1.fx: 429.16539289
+Camera1.fy: 421.90755173
+Camera1.cx: 282.13960602
+Camera1.cy: 260.23149283
 
-Camera1.k1: 0.0
-Camera1.k2: 0.0
-Camera1.p1: 0.0
-Camera1.p2: 0.0
+# Equidistant distortion 0.0034823894022493434, 0.0007150348452162257, -0.0020532361418706202, 0.00020293673591811182
+# Camera1.k1: 0.00936199
+# Camera1.k2: 0.00808353
+# Camera1.k3: 0.0023172
+# Camera1.k4: 0.01467438
+Camera1.k1: -0.02301641
+Camera1.k2: -1.46200988 
+Camera1.k3: 9.65130386
+Camera1.k4: -15.79541297
+    
+# Camera resolution
+Camera.width: 1280
+Camera.height: 800
+# Camera.width: 640
+# Camera.height: 480
+
+# Camera.newWidth: 640
+# Camera.newHeight: 480
 
 # Camera frames per second 
 Camera.fps: 20
 
 # Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
-Camera.RGB: 1
-
-# Camera resolution
-Camera.width: 1280
-Camera.height: 800
+Camera.RGB: 0
 
 #--------------------------------------------------------------------------------------------
 # ORB Parameters
 #--------------------------------------------------------------------------------------------
 
 # ORB Extractor: Number of features per image
-ORBextractor.nFeatures: 2000
+ORBextractor.nFeatures: 1500 # Tested with 1250
 
 # ORB Extractor: Scale factor between levels in the scale pyramid 	
 ORBextractor.scaleFactor: 1.2
@@ -56,21 +62,20 @@ ORBextractor.nLevels: 8
 # ORB Extractor: Fast threshold
 # Image is divided in a grid. At each cell FAST are extracted imposing a minimum response.
 # Firstly we impose iniThFAST. If no corners are detected we impose a lower value minThFAST
-# You can lower these values if your images have low contrast			
+# You can lower these values if your images have low contrast
 ORBextractor.iniThFAST: 20
 ORBextractor.minThFAST: 7
 
 #--------------------------------------------------------------------------------------------
 # Viewer Parameters
 #--------------------------------------------------------------------------------------------
-Viewer.KeyFrameSize: 0.1
+Viewer.KeyFrameSize: 0.05
 Viewer.KeyFrameLineWidth: 1.0
-Viewer.GraphLineWidth: 1.0
+Viewer.GraphLineWidth: 0.9
 Viewer.PointSize: 2.0
-Viewer.CameraSize: 0.15
-Viewer.CameraLineWidth: 2.0
+Viewer.CameraSize: 0.08
+Viewer.CameraLineWidth: 3.0
 Viewer.ViewpointX: 0.0
-Viewer.ViewpointY: -10.0
-Viewer.ViewpointZ: -0.1
-Viewer.ViewpointF: 2000.0
-
+Viewer.ViewpointY: -0.7
+Viewer.ViewpointZ: -3.5
+Viewer.ViewpointF: 500.0

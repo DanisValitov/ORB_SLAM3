@@ -272,16 +272,16 @@ target_link_libraries(mono_euroc ${PROJECT_NAME})
 #     target_link_libraries(stereo_inertial_realsense_D435i ${PROJECT_NAME})
 # endif()
 
-# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/Calibration)
-# if(realsense2_FOUND)
-#     add_executable(recorder_realsense_D435i
-#             Examples/Calibration/recorder_realsense_D435i.cc)
-#     target_link_libraries(recorder_realsense_D435i ${PROJECT_NAME})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/Calibration)
+if(realsense2_FOUND)
+    add_executable(recorder_realsense_D435i
+            Examples/Calibration/recorder_realsense_D435i.cc)
+    target_link_libraries(recorder_realsense_D435i ${PROJECT_NAME})
 
-#     add_executable(recorder_realsense_T265
-#             Examples/Calibration/recorder_realsense_T265.cc)
-#     target_link_libraries(recorder_realsense_T265 ${PROJECT_NAME})
-# endif()
+    add_executable(recorder_realsense_T265
+            Examples/Calibration/recorder_realsense_T265.cc)
+    target_link_libraries(recorder_realsense_T265 ${PROJECT_NAME})
+endif()
 
 # #Old examples
 

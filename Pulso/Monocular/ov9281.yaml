@@ -1,36 +1,34 @@
 %YAML:1.0
-# System.LoadAtlasFromFile: "Session_tum_Mono"
 
-System.SaveAtlasToFile: "Session_tum_Mono"
+#--------------------------------------------------------------------------------------------
+# System config
+#--------------------------------------------------------------------------------------------
 
+# When the variables are commented, the system doesn't load a previous session or not store the current one
+
+# If the LoadFile doesn't exist, the system give a message and create a new Atlas from scratch
+# System.LoadAtlasFromFile: "Session_KITTI04-12-Pulso"
+
+# The store file is created from the current session, if a file with the same name exists it is deleted
+System.SaveAtlasToFile: "Session_KITTI04-12-Pulso"
 
 #--------------------------------------------------------------------------------------------
 # Camera Parameters. Adjust them!
 #--------------------------------------------------------------------------------------------
 File.version: "1.0"
 
-Camera.type: "KannalaBrandt8"
+Camera.type: "PinHole"
 
 # Camera calibration and distortion parameters (OpenCV) 
-Camera1.fx: 190.978477
-Camera1.fy: 190.973307
-Camera1.cx: 254.931706
-Camera1.cy: 256.897442
+Camera1.fx: 1540.06062338
+Camera1.fy: 1532.4896193 
+Camera1.cx: 539.45298073
+Camera1.cy: 485.90123079
 
-# Equidistant distortion 0.0034823894022493434, 0.0007150348452162257, -0.0020532361418706202, 0.00020293673591811182
-Camera1.k1: 0.003482389402
-Camera1.k2: 0.000715034845
-Camera1.k3: -0.002053236141
-Camera1.k4: 0.000202936736
-    
-# Camera resolution
-Camera.width: 1280
-Camera.height: 800
-# Camera.width: 640
-# Camera.height: 480
-
-# Camera.newWidth: 640
-# Camera.newHeight: 480
+Camera1.k1: 0.31891853
+Camera1.k2: -0.16008456
+Camera1.p1: 0.04558242
+Camera1.p2: 0.04909998
 
 # Camera frames per second 
 Camera.fps: 20
@@ -38,12 +36,16 @@ Camera.fps: 20
 # Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
 Camera.RGB: 0
 
+# Camera resolution
+Camera.width: 1280
+Camera.height: 800
+
 #--------------------------------------------------------------------------------------------
 # ORB Parameters
 #--------------------------------------------------------------------------------------------
 
 # ORB Extractor: Number of features per image
-ORBextractor.nFeatures: 1500 # Tested with 1250
+ORBextractor.nFeatures: 2000
 
 # ORB Extractor: Scale factor between levels in the scale pyramid 	
 ORBextractor.scaleFactor: 1.2
@@ -54,20 +56,21 @@ ORBextractor.nLevels: 8
 # ORB Extractor: Fast threshold
 # Image is divided in a grid. At each cell FAST are extracted imposing a minimum response.
 # Firstly we impose iniThFAST. If no corners are detected we impose a lower value minThFAST
-# You can lower these values if your images have low contrast
+# You can lower these values if your images have low contrast			
 ORBextractor.iniThFAST: 20
 ORBextractor.minThFAST: 7
 
 #--------------------------------------------------------------------------------------------
 # Viewer Parameters
 #--------------------------------------------------------------------------------------------
-Viewer.KeyFrameSize: 0.05
+Viewer.KeyFrameSize: 0.1
 Viewer.KeyFrameLineWidth: 1.0
-Viewer.GraphLineWidth: 0.9
+Viewer.GraphLineWidth: 1.0
 Viewer.PointSize: 2.0
-Viewer.CameraSize: 0.08
-Viewer.CameraLineWidth: 3.0
+Viewer.CameraSize: 0.15
+Viewer.CameraLineWidth: 2.0
 Viewer.ViewpointX: 0.0
-Viewer.ViewpointY: -0.7
-Viewer.ViewpointZ: -3.5
-Viewer.ViewpointF: 500.0
+Viewer.ViewpointY: -10.0
+Viewer.ViewpointZ: -0.1
+Viewer.ViewpointF: 2000.0
+
