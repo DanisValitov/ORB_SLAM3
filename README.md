@@ -130,3 +130,14 @@ python evaluation/evaluate_ate_scale.py evaluation/Ground_truth/EuRoC_left_cam/M
 
 open the pdf `MH01_stereo.pdf` and you see the 
 
+# 5 Camera calibration
+### Building Kalibr from Source
+https://github.com/ethz-asl/kalibr/wiki/installation
+### Prepare dataset
+https://github.com/ethz-asl/kalibr/wiki/bag-format
+## Calibration from ROS workspace
+```shell
+rosrun kalibr <cmd>
+```
+https://github.com/ethz-asl/kalibr/wiki/multiple-camera-calibration
+

@@ -57,7 +57,7 @@ int main(int argc, char **argv)
 {
 
     cv::Mat myImage;
-    cv::VideoCapture cap(2);
+    cv::VideoCapture cap(0);
 
     // UDP STUFF
     /////////////////
@@ -110,7 +110,7 @@ int main(int argc, char **argv)
     ///////////////////////
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    ORB_SLAM3::System SLAM(argv[1], argv[2], ORB_SLAM3::System::MONOCULAR, true);
+    ORB_SLAM3::System SLAM(argv[1], argv[2], ORB_SLAM3::System::MONOCULAR, false);
     float imageScale = SLAM.GetImageScale();
 
     double t_resize = 0.f;
@@ -167,7 +167,7 @@ int main(int argc, char **argv)
         int step = 4;
         for (size_t i = 0; i < 7; i++)
         {
-            const unsigned char *res = toChar(arr[i]);
+            unsigned char *res = (unsigned char*)&arr[i];
             for (size_t j = 0; j < step; j++)
             {
                 tempBuffer[(step - j - 1) + shift] = res[j];
