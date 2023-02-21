@@ -57,7 +57,7 @@ int main(int argc, char **argv)
 {
 
     cv::Mat myImage;
-    cv::VideoCapture cap(0);
+    cv::VideoCapture cap(0); // change to 2 if there is embeded web cam
 
     // UDP STUFF
     /////////////////
@@ -110,7 +110,7 @@ int main(int argc, char **argv)
     ///////////////////////
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    ORB_SLAM3::System SLAM(argv[1], argv[2], ORB_SLAM3::System::MONOCULAR, false);
+    ORB_SLAM3::System SLAM(argv[1], argv[2], ORB_SLAM3::System::MONOCULAR, false); // set true for visualization
     float imageScale = SLAM.GetImageScale();
 
     double t_resize = 0.f;
