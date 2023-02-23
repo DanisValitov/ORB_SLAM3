@@ -64,7 +64,7 @@ int main(int argc, char **argv)
     ///////////////////////
     float arr[7] = {};
     unsigned char tempBuffer[28] = {};
-///////////////////////
+    ///////////////////////
 
     int sockfd;
     char buffer[MAXLINE];
@@ -112,6 +112,18 @@ int main(int argc, char **argv)
     vector<ORB_SLAM3::IMU::Point> vImuMeas;
     while (true)
     {
+        cap.read(myImage);
+        if (myImage.empty())
+        { // Breaking the loop if no video frame is detected//
+            break;
+        }
+
+        char c = (char)cv::waitKey(25); // Allowing 25 milliseconds frame processing time and initiating break condition//
+        if (c == 27)
+        { // If 'Esc' is entered break the loop//
+            break;
+        }
+
         n = recvfrom(sockfd, (char *)buffer, MAXLINE,
                      MSG_WAITALL, (struct sockaddr *)&cliaddr,
                      &len);
@@ -141,22 +153,10 @@ int main(int argc, char **argv)
         std::cout << xR << ", " << yR << ", " << zR << ", " << xA << ", " << yA << ", " << zA << "\n";
 
         /////
-        cap.read(myImage);
-        if (myImage.empty())
-        { // Breaking the loop if no video frame is detected//
-            break;
-        }
-
-        char c = (char)cv::waitKey(25); // Allowing 25 milliseconds frame processing time and initiating break condition//
-        if (c == 27)
-        { // If 'Esc' is entered break the loop//
-            break;
-        }
 
         double timestamp = now();
         vImuMeas.clear();
-        vImuMeas.push_back(ORB_SLAM3::IMU::Point(xA,yA,zA,xR,yR,zR,timestamp));
-                    
+        vImuMeas.push_back(ORB_SLAM3::IMU::Point(xA, yA, zA, xR, yR, zR, timestamp));
 
         Sophus::SE3f res = SLAM.TrackMonocular(myImage, timestamp, vImuMeas); // TODO change to monocular_inertial
         g2o::SE3Quat q = ORB_SLAM3::Converter::toSE3Quat(res);

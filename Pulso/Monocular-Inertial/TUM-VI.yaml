@@ -6,26 +6,26 @@
 File.version: "1.0"
 
 Camera.type: "KannalaBrandt8"
-
+#   intrinsics: [409.4478757738202, 405.8704656308569, 306.02704158320853, 289.04542298746355]
 # Camera calibration and distortion parameters (OpenCV) 
-Camera1.fx: 190.978477
-Camera1.fy: 190.973307
-Camera1.cx: 254.931706
-Camera1.cy: 256.897442
+Camera1.fx: 409.4478757738202
+Camera1.fy: 405.8704656308569
+Camera1.cx: 306.02704158320853
+Camera1.cy: 289.04542298746355
 
-# Equidistant distortion 0.0034823894022493434, 0.0007150348452162257, -0.0020532361418706202, 0.00020293673591811182
+# -0.20388330946851713, 1.1862570118793592, -2.5017658570790022, 1.5447800224731203
 #Camera.bFishEye: 1
-Camera1.k1: 0.003482389402
-Camera1.k2: 0.000715034845
-Camera1.k3: -0.002053236141
-Camera1.k4: 0.000202936736
+Camera1.k1: -0.20388330946851713
+Camera1.k2: 1.1862570118793592
+Camera1.k3: -2.5017658570790022
+Camera1.k4: 1.5447800224731203
     
 # Camera resolution
-Camera.width: 1280
-Camera.height: 800
+Camera.width: 640
+Camera.height: 480
 
 # Camera frames per second 
-Camera.fps: 30
+Camera.fps: 20
 
 # Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
 Camera.RGB: 1
@@ -35,17 +35,17 @@ IMU.T_b_c1: !!opencv-matrix
    rows: 4
    cols: 4
    dt: f
-   data: [-0.9995250378696743, 0.0075019185074052044, -0.02989013031643309, 0.045574835649698026, 
-          0.029615343885863205, -0.03439736061393144, -0.998969345370175, -0.071161801837997044,
-         -0.008522328211654736, -0.9993800792498829, 0.03415885127385616, -0.044681254117144367,
+   data: [0.14709864016932037, -0.9877598479248695, -0.051889044005216545, -0.00029240940359808484, 
+          0.04207159864081128, 0.058660355660873575, -0.9973910683686446, 7.607734280588625e-05,
+         0.9882266797896843, 0.14453181484081046, 0.050185494424967, -1.8354571877420633e-05,
           0.0, 0.0, 0.0, 1.0]
 
 # # IMU noise (Use those from VINS-mono)
-IMU.NoiseGyro: 0.00016 # rad/s^0.5 
-IMU.NoiseAcc: 0.0028 # m/s^1.5
-IMU.GyroWalk: 0.000022 # rad/s^1.5
-IMU.AccWalk: 0.00086 # m/s^2.5
-IMU.Frequency: 100.0
+IMU.NoiseGyro: 0.05 # rad/s^0.5 
+IMU.NoiseAcc: 0.3 # m/s^1.5
+IMU.GyroWalk: 0.005 # rad/s^1.5
+IMU.AccWalk: 0.05 # m/s^2.5
+IMU.Frequency: 200.0
 
 
 #--------------------------------------------------------------------------------------------

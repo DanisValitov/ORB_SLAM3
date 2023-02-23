@@ -10,38 +10,32 @@ System.SaveAtlasToFile: "Session_tum_Mono"
 File.version: "1.0"
 
 Camera.type: "KannalaBrandt8"
-    #    distortion: [ -0.02301641  -1.46200988   9.65130386 -15.79541297] +- [ 0.18158491  1.65877165  6.60150579  9.55472786]
-    # projection: [ 429.16539289  421.90755173  282.13960602  260.23149283] +- [ 26.39775182  25.24757224   3.65230035   2.86999381]
+    # 363.7075582679058, 360.46348514755203, 317.39600194705076, 292.4130121014591
+    # Camera calibration and distortion parameters (OpenCV) 
+Camera1.fx: 363.7075582679058
+Camera1.fy: 360.46348514755203
+Camera1.cx: 317.39600194705076
+Camera1.cy: 292.4130121014591
 
+# Equidistant distortion 
+# -0.08799159603536812, 0.7871069254047225, -1.448660341675365, 0.7583146563350722
 
-
-# Camera calibration and distortion parameters (OpenCV) 
-Camera1.fx: 429.16539289
-Camera1.fy: 421.90755173
-Camera1.cx: 282.13960602
-Camera1.cy: 260.23149283
-
-# Equidistant distortion 0.0034823894022493434, 0.0007150348452162257, -0.0020532361418706202, 0.00020293673591811182
-# Camera1.k1: 0.00936199
-# Camera1.k2: 0.00808353
-# Camera1.k3: 0.0023172
-# Camera1.k4: 0.01467438
-Camera1.k1: -0.02301641
-Camera1.k2: -1.46200988 
-Camera1.k3: 9.65130386
-Camera1.k4: -15.79541297
+Camera1.k1: -0.08799159603536812
+Camera1.k2: 0.7871069254047225
+Camera1.k3: -1.448660341675365
+Camera1.k4: 0.7583146563350722
     
 # Camera resolution
-Camera.width: 1280
-Camera.height: 800
-# Camera.width: 640
-# Camera.height: 480
+# Camera.width: 1280
+# Camera.height: 800
+Camera.width: 640
+Camera.height: 480
 
-Camera.newWidth: 640
-Camera.newHeight: 480
+# Camera.newWidth: 640
+# Camera.newHeight: 480
 
 # Camera frames per second 
-Camera.fps: 20
+Camera.fps: 30
 
 # Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
 Camera.RGB: 0
