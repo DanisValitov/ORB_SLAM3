@@ -9,21 +9,17 @@ System.SaveAtlasToFile: "Session_tum_Mono"
 #--------------------------------------------------------------------------------------------
 File.version: "1.0"
 
-Camera.type: "KannalaBrandt8"
-    # 363.7075582679058, 360.46348514755203, 317.39600194705076, 292.4130121014591
-    # Camera calibration and distortion parameters (OpenCV) 
-Camera1.fx: 363.7075582679058
-Camera1.fy: 360.46348514755203
-Camera1.cx: 317.39600194705076
-Camera1.cy: 292.4130121014591
+Camera.type: "PinHole"
 
-# Equidistant distortion 
-# -0.08799159603536812, 0.7871069254047225, -1.448660341675365, 0.7583146563350722
+Camera1.fx: 422.9697627119341
+Camera1.fy: 422.37650035463236
+Camera1.cx: 411.25452891182243
+Camera1.cy: 245.96860113452865
 
-Camera1.k1: -0.08799159603536812
-Camera1.k2: 0.7871069254047225
-Camera1.k3: -1.448660341675365
-Camera1.k4: 0.7583146563350722
+Camera1.k1: -0.3815159699660478
+Camera1.k2: 0.10345271910148866
+Camera1.p1: 0.0014401733207657788
+Camera1.p2: 0.0012522696801566097
     
 # Camera resolution
 # Camera.width: 1280
@@ -45,7 +41,7 @@ Camera.RGB: 0
 #--------------------------------------------------------------------------------------------
 
 # ORB Extractor: Number of features per image
-ORBextractor.nFeatures: 1500 # Tested with 1250
+ORBextractor.nFeatures: 1250 # Tested with 1250
 
 # ORB Extractor: Scale factor between levels in the scale pyramid 	
 ORBextractor.scaleFactor: 1.2
