@@ -5,15 +5,12 @@
 #--------------------------------------------------------------------------------------------
 File.version: "1.0"
 
-Camera.type: "PinHole"
-
-System.SaveAtlasToFile: "Session_f_ov9281_stereo"
-
+Camera.type: "KannalaBrandt8"
 
   # intrinsics: [439.28072695710716, 437.08491087506974, 314.403336893812, 266.18917455025303]
 # Left Camera calibration and distortion parameters (OpenCV)
 Camera1.fx: 419.08277206397037
-Camera1.fy:  416.95736104327113
+Camera1.fy: 416.95736104327113
 Camera1.cx: 314.00030371935947
 Camera1.cy: 266.12913712935966
 
@@ -21,8 +18,8 @@ Camera1.cy: 266.12913712935966
 # Kannala-Brandt distortion parameters
 Camera1.k1:  -0.28803595024965023
 Camera1.k2: 0.037100054801472514
-Camera1.p1: -0.0007825158546540176
-Camera1.p2:  -0.0006714819490096475
+Camera1.k3: -0.0007825158546540176
+Camera1.k4:  -0.0006714819490096475
 
 # Right Camera calibration and distortion parameters (OpenCV)
 #   intr : [437.78828674041375, 435.33109098912644, 362.96213585382355, 271.7634309706571]
@@ -35,8 +32,8 @@ Camera2.cy: 266.12913712935966
 # [-0.32795173511121234, 1.4507302071738735, -3.5404987109408843, 2.7811007250727084]
 Camera2.k1:  -0.36051289372286444
 Camera2.k2: 0.10011349037461174
-Camera2.p1: 0.006466309526559717
-Camera2.p2: -0.009641482314175347
+Camera2.k3: 0.006466309526559717
+Camera2.k4: -0.009641482314175347
 Stereo.ThDepth: 40.0
 Stereo.T_c1_c2: !!opencv-matrix
   rows: 4

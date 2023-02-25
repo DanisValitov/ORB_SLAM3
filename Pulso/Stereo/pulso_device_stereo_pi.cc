@@ -57,9 +57,12 @@ int main(int argc, char **argv)
 {
 
     cv::Mat myImage;
-    cv::VideoCapture cap(2); // change to 2 if there is embeded web cam
+    cv::Mat myImage2;
 
-    // UDP STUFF
+    cv::VideoCapture cap(2);
+    cv::VideoCapture cap2(4);
+
+// UDP STUFF
     /////////////////
 
     #define PORT 5555
@@ -110,7 +113,7 @@ int main(int argc, char **argv)
     ///////////////////////
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    ORB_SLAM3::System SLAM(argv[1], argv[2], ORB_SLAM3::System::MONOCULAR, true); // set true for visualization
+    ORB_SLAM3::System SLAM(argv[1], argv[2], ORB_SLAM3::System::STEREO, true);
     float imageScale = SLAM.GetImageScale();
 
     double t_resize = 0.f;
@@ -120,7 +123,8 @@ int main(int argc, char **argv)
     {
 
         cap >> myImage;
-        if (myImage.empty())
+        cap2 >> myImage2;
+        if (myImage.empty() || myImage2.empty())
         { // Breaking the loop if no video frame is detected//
             break;
         }
@@ -133,7 +137,7 @@ int main(int argc, char **argv)
 
         double timestamp = now();
 
-        Sophus::SE3f res = SLAM.TrackMonocular(myImage, timestamp); // TODO change to monocular_inertial
+        Sophus::SE3f res = SLAM.TrackStereo(myImage, myImage2, timestamp); // TODO change to monocular_inertial
         g2o::SE3Quat q = ORB_SLAM3::Converter::toSE3Quat(res);
 
         Eigen::Quaterniond quat = q.rotation();
@@ -178,9 +182,10 @@ int main(int argc, char **argv)
         sendto(sockfd, tempBuffer, 28,
                MSG_CONFIRM, (const struct sockaddr *)&cliaddr,
                len);
+        
     }
     // Stop all threads
     SLAM.Shutdown();
-    close(sockfd);
+    close(fd);
     return 0;
 }
