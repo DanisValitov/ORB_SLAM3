@@ -186,6 +186,6 @@ int main(int argc, char **argv)
     }
     // Stop all threads
     SLAM.Shutdown();
-    close(fd);
+    close(sockfd);
     return 0;
 }

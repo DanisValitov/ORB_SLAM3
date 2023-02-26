@@ -145,6 +145,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Pulso/Stereo)
 add_executable(pulso_device_stereo
         Pulso/Stereo/pulso_device_stereo.cc)
 target_link_libraries(pulso_device_stereo ${PROJECT_NAME})
+add_executable(pulso_device_stereo_pi
+        Pulso/Stereo/pulso_device_stereo_pi.cc)
+target_link_libraries(pulso_device_stereo_pi ${PROJECT_NAME})
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Pulso/Monocular-Inertial)
 add_executable(pulso_device_mono_inertial
